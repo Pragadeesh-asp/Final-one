@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Happy Birthday Nikitha — The Strong Woman 🌸</title>
+<meta name="description" content="A soft-pastel animated surprise for Nikitha with a pink Porsche start.">
+<style>
+  :root{
+    --bg1:#FFF7FB;
+    --bg2:#F3FBFF;
+    --accent:#d97be9;
+    --muted:#6f5b78;
+    --card:#ffffff;
+    --gold:#ffd67a;
+    --rose:#ffd6e6;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background:linear-gradient(135deg,var(--bg1),var(--bg2));}
+  body{display:flex;align-items:center;justify-content:center;padding:20px;}
+
+  /* centered card (old style look, mobile-friendly) */
+  .card{
+    width:100%;max-width:980px;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,0.96),rgba(255,255,255,0.92));
+    box-shadow:0 20px 70px rgba(120,80,160,0.10);
+    padding:22px;position:relative;overflow:hidden;
+    min-height:420px;
+  }
+
+  /* subtle background motifs: sunshine and strong watermark */
+  .bg-motif{
+    position:absolute;inset:0;pointer-events:none;z-index:0;
+  }
+  .sun-planet{
+    position:absolute;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle at 35% 30%, rgba(255,220,140,0.95), rgba(255,200,100,0.08));
+    right:14%;top:8%;filter:blur(26px);opacity:0.75;
+  }
+  .strong-watermark{
+    position:absolute;left:6%;top:12%;font-weight:800;font-size:120px;color:rgba(210,135,200,0.06);transform:rotate(-12deg);pointer-events:none;user-select:none;
+  }
+
+  header{display:flex;align-items:center;gap:12px;margin-bottom:8px;z-index:2;position:relative}
+  .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#ffd6ee,#e7d7ff);
+    display:flex;align-items:center;justify-content:center;font-weight:700;color:#6b3d70;flex-shrink:0}
+  h1{margin:0;font-size:20px;color:#4a2b6e}
+  p.lead{margin:2px 0 0;color:var(--muted);font-size:13px}
+
+  .stage{margin-top:14px;border-radius:12px;padding:14px;min-height:300px;background:linear-gradient(180deg,rgba(255,255,255,0.82),rgba(255,255,255,0.78));
+    display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;z-index:2}
+
+  /* car area */
+  .car-wrap{width:100%;max-width:780px;height:260px;position:relative;display:flex;align-items:center;justify-content:center}
+  svg#car{width:70%;height:auto;transition:opacity 900ms ease, transform 1.0s cubic-bezier(.22,.9,.25,1)}
+  .car-dim{opacity:0.08}
+  .title-overlay{position:absolute;top:20px;left:20px;right:20px;text-align:center;pointer-events:none;color:#42244c;font-weight:700;font-size:22px;opacity:0;transform:translateY(-6px);transition:opacity 1.0s ease, transform 1.0s ease;text-shadow:0 8px 20px rgba(150,120,200,0.06);z-index:3}
+
+  /* controls bottom area (keeps start/skip) */
+  .controls{margin-top:14px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;z-index:2}
+  .btn{padding:11px 14px;border-radius:12px;border:0;background:linear-gradient(90deg,#fff,#fff7ff);cursor:pointer;font-weight:700;color:#4a2b6e;box-shadow:0 8px 20px rgba(140,100,200,0.06);font-size:15px}
+  .primary{background:linear-gradient(90deg,#f4a1ff,#9aa7ff);color:white}
+  .muted{background:linear-gradient(90deg,#ffffff,#fff9f0);color:#4a2b6e;border:1px solid rgba(120,80,160,0.06)}
+
+  /* message panel with internal controls container at bottom */
+  .messages{margin-top:16px;padding:14px;border-radius:12px;background:rgba(250,250,255,0.85);max-height:340px;overflow:auto;display:none;z-index:2}
+  .line{opacity:0;transform:translateY(10px);transition:opacity 900ms ease, transform 900ms ease;margin:12px 0;color:#3b2250;font-size:16px;line-height:1.45}
+  .line.visible{opacity:1;transform:translateY(0)}
+  .small{font-size:13px;color:var(--muted)}
+  .controls-in-messages{margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+
+  footer.small{font-size:13px;color:var(--muted);margin-top:12px;text-align:center;z-index:2}
+  /* tiny final footer "From Pragadeesh aka Levi" */
+  .fromPrag{margin-top:12px;text-align:center;color:#b86f9f;font-size:13px;opacity:0.95}
+
+  /* sparkles within card (subtle) */
+  .sparkles{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+  .spark{position:absolute;width:6px;height:6px;border-radius:50%;background:rgba(255,210,150,0.9);box-shadow:0 0 8px rgba(255,215,140,0.6);opacity:0.9;transform:translateY(0);}
+
+  /* responsive tweaks */
+  @media (max-width:720px){
+    .card{padding:16px;min-height:520px}
+    .title-overlay{font-size:18px}
+    .line{font-size:15px}
+    .logo{width:48px;height:48px}
+    svg#car{width:92%}
+    .sun-planet{width:110px;height:110px;right:6%;top:6%;}
+    .strong-watermark{font-size:72px;left:2%;top:8%}
+    .controls{justify-content:center}
+  }
+</style>
+</head>
+<body>
+  <main class="card" role="main" aria-labelledby="title">
+    <!-- background motifs -->
+    <div class="bg-motif">
+      <div class="sun-planet" aria-hidden="true"></div>
+      <div class="strong-watermark" aria-hidden="true">STRONG</div>
+    </div>
+
+    <header>
+      <div class="logo">N</div>
+      <div style="z-index:2">
+        <h1 id="title">Happy Birthday Nikitha — The Strong Woman</h1>
+        <p class="lead">Open, press <em>Start the Car</em>, and enjoy the surprise 🎁</p>
+      </div>
+    </header>
+
+    <section class="stage" id="stage">
+      <div class="car-wrap" id="carWrap" aria-hidden="false">
+        <div class="title-overlay" id="titleOverlay">Happy Birthday, Nikitha Cathryn 🌸</div>
+
+        <!-- simplified pink car (keeps the soft look) -->
+        <svg id="car" class="car-parked" viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pink sports car" style="z-index:2">
+          <ellipse cx="400" cy="250" rx="240" ry="28" fill="rgba(100,40,100,0.06)"/>
+          <g id="carBody">
+            <path d="M120 200 Q140 150 220 140 L540 140 Q600 140 640 170 L700 210 Q680 230 620 230 L200 230 Q160 230 120 200 Z" fill="#ffd6e6" stroke="#ffb6da" stroke-width="2"/>
+            <path d="M260 140 Q320 110 420 110 Q500 110 540 140" fill="#eef6ff" stroke="#cfe8ff" stroke-width="2" />
+            <g>
+              <circle cx="250" cy="240" r="30" fill="#2b2b2b"/>
+              <circle cx="250" cy="240" r="18" fill="#ffd6e6"/>
+              <circle cx="570" cy="240" r="30" fill="#2b2b2b"/>
+              <circle cx="570" cy="240" r="18" fill="#ffd6e6"/>
+            </g>
+          </g>
+        </svg>
+      </div>
+    </section>
+
+    <div class="controls" id="controlsArea">
+      <button id="startCarBtn" class="primary btn">Start the Car 🚗💨</button>
+      <button id="skipCarBtn" class="btn muted">If you don’t have patience, click here</button>
+      <button id="musicToggle" class="btn">Play Music</button>
+    </div>
+
+    <!-- messages area (controls will appear inside here below messages) -->
+    <div class="messages" id="messageBox" aria-live="polite">
+      <!-- messages will be appended here -->
+      <div id="controlsInMessages" class="controls-in-messages" aria-hidden="false"></div>
+    </div>
+
+    <footer class="small">Tip: after finishing the flow you'll be prompted to download a response file you can share back with Pragadeesh.</footer>
+
+    <div class="sparkles" id="sparklesArea" aria-hidden="true"></div>
+  </main>
+
+  <!-- only ambient/music optional; engine sound removed (no sound effects) -->
+  <audio id="bgm" loop preload="metadata" src="https://cdn.pixabay.com/download/audio/2023/03/01/audio_5b1d3de760.mp3?filename=piano-soft-ambient-139250.mp3"></audio>
+
+<script>
+/* =========== Config (unchanged messages mostly) =========== */
+const INTRO_LINES = [
+  "Happy Birthday, NIKITHA CATHRYN.N 🌸",
+  "",
+  "I didn’t forget your birthday — I just didn’t want to consume your energy at the start of the day.",
+  "I know you don’t have much patience, so I’m sending this at the end of the day, also I don’t want to start your day with annoyed",
+  "",
+  "Thank you for being in my life and for blowing everyone’s lights up.",
+  "I hope you reached your 50 kg goal or are close to it.",
+  "",
+  "My wishes for you: your PhD, your job at FIA, your dream 911, and hitting the gym like you planned.",
+  "",
+  "You didn’t deserve what happened in the past — focus on your future. You deserve the great, not just the good.",
+  "",
+  "Eat well, jojo well, stay hydrated, and please take care of yourself.",
+  "",
+  "Anyway, before you lose patience with me 😂 I’ll stop here.",
+  "Do you still have patience to read just a few more lines?"
+];
+
+const FINAL_LINES = [
+  "",
+  "Thanks for being you… and sorry for everything I did.",
+  "If there’s any wish I can help with, tell me — if not, that’s okay.",
+  "Good night, Spice dreams, jojo well, NIKITHA (strong woman) 🌙",
+  "- Pragadeesh (aka Levi)"
+];
+
+const LINE_DELAY = 900; // ms
+/* ========================================================= */
+
+const startBtn = document.getElementById('startCarBtn');
+const skipBtn = document.getElementById('skipCarBtn');
+const car = document.getElementById('car');
+const titleOverlay = document.getElementById('titleOverlay');
+const messageBox = document.getElementById('messageBox');
+const controlsInMessages = document.getElementById('controlsInMessages');
+const controlsArea = document.getElementById('controlsArea');
+const musicToggle = document.getElementById('musicToggle');
+const bgm = document.getElementById('bgm');
+const sparklesArea = document.getElementById('sparklesArea');
+
+const responses = { started_at: new Date().toISOString(), answers: {} };
+
+/* small utility */
+function sleep(ms){ return new Promise(r=>setTimeout(r, ms)); }
+
+/* ====== sparkles inside card (subtle, mobile-friendly) ====== */
+function spawnSparkles(count=18){
+  sparklesArea.innerHTML = '';
+  const w = sparklesArea.clientWidth, h = sparklesArea.clientHeight;
+  for(let i=0;i<count;i++){
+    const s = document.createElement('div');
+    s.className = 'spark';
+    const left = Math.random()*95;
+    const top = 30 + Math.random()*60;
+    s.style.left = left + '%';
+    s.style.top = top + '%';
+    const dur = 5000 + Math.random()*7000;
+    s.style.transition = `transform ${dur}ms linear, opacity ${dur/1.5}ms ease`;
+    sparklesArea.appendChild(s);
+    // animate slowly upward and fade
+    setTimeout(()=> {
+      s.style.transform = `translateY(-${20 + Math.random()*40}px)`;
+      s.style.opacity = '0.05';
+    }, 40 + Math.random()*800);
+    // remove later
+    setTimeout(()=> s.remove(), dur + 2000);
+  }
+}
+
+/* message reveal helper */
+function revealLine(text){
+  const d = document.createElement('div'); d.className='line'; d.innerHTML = text;
+  // append then show
+  messageBox.insertBefore(d, controlsInMessages);
+  setTimeout(()=> d.classList.add('visible'), 120);
+  // scroll to bottom
+  messageBox.scrollTop = messageBox.scrollHeight;
+}
+
+/* controls inside message panel (moved here from top controls) */
+function clearMessageControls(){
+  controlsInMessages.innerHTML = '';
+}
+
+function createYesNoControls(callback){
+  clearMessageControls();
+  const container = document.createElement('div'); container.style.display='flex'; container.style.gap='10px'; container.style.justifyContent='center'; container.style.marginTop='10px';
+  const yes = document.createElement('button'); yes.className='btn primary'; yes.textContent='Yes';
+  const no = document.createElement('button'); no.className='btn'; no.textContent='No';
+  yes.onclick = ()=> { container.remove(); callback(true); };
+  no.onclick = ()=> { container.remove(); callback(false); };
+  container.appendChild(yes); container.appendChild(no);
+  controlsInMessages.appendChild(container);
+  yes.focus();
+  return container;
+}
+
+function createRatingControl(callback){
+  clearMessageControls();
+  const container = document.createElement('div'); container.style.display='flex'; container.style.flexDirection='column'; container.style.gap='8px'; container.style.alignItems='center';
+  const row = document.createElement('div'); row.style.display='flex'; row.style.gap='10px'; row.style.alignItems='center';
+  const slider = document.createElement('input'); slider.type='range'; slider.min=1; slider.max=10; slider.value=8;
+  slider.style.width = '160px';
+  const badge = document.createElement('div'); badge.className='small'; badge.textContent = slider.value;
+  slider.oninput = ()=> badge.textContent = slider.value;
+  const ok = document.createElement('button'); ok.className='btn primary'; ok.textContent='Submit';
+  ok.onclick = ()=> { container.remove(); callback(parseInt(slider.value,10)); };
+  row.appendChild(slider); row.appendChild(badge);
+  container.appendChild(row); container.appendChild(ok);
+  controlsInMessages.appendChild(container);
+  return container;
+}
+
+function createTextPrompt(callback){
+  clearMessageControls();
+  const container = document.createElement('div'); container.style.display='flex'; container.style.flexDirection='column'; container.style.gap='8px';
+  const ta = document.createElement('textarea'); ta.placeholder='Type your wish here (or leave empty to skip)'; ta.style.width='100%'; ta.style.minHeight='64px'; ta.style.borderRadius='10px'; ta.style.padding='8px';
+  const row = document.createElement('div'); row.style.display='flex'; row.style.gap='8px'; row.style.justifyContent='center';
+  const save = document.createElement('button'); save.className='btn primary'; save.textContent='Save';
+  const skip = document.createElement('button'); skip.className='btn'; skip.textContent='Skip';
+  save.onclick = ()=> { container.remove(); callback(ta.value.trim()); };
+  skip.onclick = ()=> { container.remove(); callback(''); };
+  row.appendChild(save); row.appendChild(skip);
+  container.appendChild(ta); container.appendChild(row);
+  controlsInMessages.appendChild(container);
+  ta.focus();
+  return container;
+}
+
+/* ====== main flow (start / skip) ====== */
+async function startCarSequence(){
+  startBtn.disabled = true; skipBtn.disabled = true;
+  // visual start effect: slightly enlarge & dim wheels
+  car.style.transform = 'scale(1.02)';
+  // reveal title
+  await sleep(700);
+  titleOverlay.style.opacity = '1'; titleOverlay.style.transform = 'translateY(0)';
+  // spawn sparkles in card
+  spawnSparkles(22);
+  // show messages area
+  await sleep(900);
+  document.getElementById('carWrap').classList.add('car-dim');
+  messageBox.style.display = 'block';
+  await sleep(450);
+  runMessageFlow();
+}
+
+async function skipToMessages(){
+  startBtn.disabled = true; skipBtn.disabled = true;
+  titleOverlay.style.opacity = '1'; titleOverlay.style.transform = 'translateY(0)';
+  document.getElementById('carWrap').classList.add('car-dim');
+  messageBox.style.display = 'block';
+  await sleep(350);
+  runMessageFlow();
+}
+
+/* main interactive flow (uses controls inside message box) */
+async function runMessageFlow(){
+  revealLine("Hey, Nikitha… are you ready for your birthday surprise?");
+  createYesNoControls(async (ready)=>{
+    responses.answers.ready = !!ready;
+    if(!ready){
+      revealLine("Alright 😅 I won’t bother you. Still — happy birthday, NIKITHA 💛");
+      await sleep(750); finalizeAndSave();
+      return;
+    }
+    revealLine("On a scale of 1 to 10, how good was your day?");
+    createRatingControl(async (rating)=>{
+      responses.answers.day_rating = rating;
+      if(rating <= 5) revealLine('Hey — bad days happen. You’re stronger than you think.');
+      else revealLine("That’s good to hear — glad your day was nice.");
+      await sleep(750);
+      // reveal intro lines slowly
+      for(let i=0;i<INTRO_LINES.length;i++){
+        revealLine(INTRO_LINES[i]);
+        // spawn a few sparkles occasionally to keep motion
+        if(i % 4 === 0) spawnSparkles(6);
+        await sleep(LINE_DELAY);
+      }
+      // ask to continue
+      revealLine("Do you still have patience to read just a few more lines?");
+      createYesNoControls(async (keep)=>{
+        responses.answers.keep_reading = !!keep;
+        if(!keep){
+          revealLine('Okay, I get it. Happy birthday again, NIKITHA.');
+          await sleep(700); finalizeAndSave(); return;
+        }
+        // show most final lines except wish prompt
+        for(let i=0;i<FINAL_LINES.length-2;i++){
+          revealLine(FINAL_LINES[i]); await sleep(LINE_DELAY);
+        }
+        // wish prompt
+        revealLine("If there’s any wish I can help with, tell me — if not, that’s okay.");
+        createTextPrompt(async (wish)=>{
+          responses.answers.wish = wish || null;
+          revealLine(wish ? "Got it ❤️ I’ll remember that." : "Alright 😊 maybe next time.");
+          // finish with last closing lines (including the 'from' line)
+          for(let i=FINAL_LINES.length-2;i<FINAL_LINES.length;i++){
+            await sleep(LINE_DELAY); revealLine(FINAL_LINES[i]);
+          }
+          // small 'from' line (stays visible)
+          revealLine("<div class='fromPrag'>💛 From Pragadeesh aka Levi</div>");
+          await sleep(700); finalizeAndSave();
+        });
+      });
+    });
+  });
+}
+
+/* finalize and create response download */
+function finalizeAndSave(){
+  responses.finished_at = new Date().toISOString();
+  // fill hidden form values if you use Netlify form (kept for compatibility)
+  try{
+    const f_started_at = document.querySelector('input[name="started_at"]');
+    if(f_started_at) f_started_at.value = responses.started_at;
+  }catch(e){}
+  const ts = new Date().toISOString().replace(/[:.]/g,'').slice(0,15);
+  const filename = `birthday_response_${ts}.json`;
+  const blob = new Blob([JSON.stringify(responses, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = filename; document.body.appendChild(a); a.click(); a.remove();
+  URL.revokeObjectURL(url);
+  revealLine('');
+  revealLine(`All done — responses saved to: ${filename}`);
+  setTimeout(()=> revealLine("Please don’t forget to download the response file and send it back to Pragadeesh 💾"), 900);
+}
+
+/* music toggle (optional, no autoplay) */
+let musicPlaying = false;
+musicToggle.addEventListener('click', ()=> {
+  if(!musicPlaying){ bgm.play().catch(()=>{}); musicToggle.textContent='Pause Music'; }
+  else { bgm.pause(); musicToggle.textContent='Play Music'; }
+  musicPlaying = !musicPlaying;
+});
+
+/* spawn gentle repeating sparkles while idle */
+setInterval(()=> spawnSparkles(8), 6000);
+
+/* events */
+startBtn.addEventListener('click', ()=> startCarSequence());
+skipBtn.addEventListener('click', ()=> skipToMessages());
+
+/* initialize */
+document.addEventListener('DOMContentLoaded', ()=> {
+  // pre-spawn a few sparkles visually
+  spawnSparkles(14);
+  // keep focus accessible
+  startBtn.focus();
+});
+</script>
+</body>
+</html>
